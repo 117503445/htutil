@@ -1,18 +1,23 @@
-# version 2020.0504.2200
-# author 117503445
-# email t117503445@gmail.com
+'''
+Author: HaoTian Qi
+Date: 2020-12-19 15:12:53
+Description: file IO warpper
+LastEditTime: 2020-12-19 16:12:34
+LastEditors: HaoTian Qi
+FilePath: /htutil/htutil/file.py
+'''
 
 import os
 
 
-def read_all_text(path: str):
+def read_all_text(path: str) -> str:
     with open(path, 'r', encoding='utf-8')as f:
         lines = f.readlines()
         text = ''.join(lines)
         return text
 
 
-def read_all_lines(path: str):
+def read_all_lines(path: str) -> str:
     with open(path, 'r', encoding='utf-8')as f:
         lines = f.readlines()
         for i in range(len(lines)):
@@ -21,44 +26,44 @@ def read_all_lines(path: str):
         return lines
 
 
-def write_all_text(path: str, content: str):
+def write_all_text(path: str, content: str) -> None:
     content = str(content)
     create_dir_if_not_exist(os.path.dirname(path))
     with open(path, 'w', encoding='utf-8')as f:
         f.write(content)
 
 
-def write_all_lines(path: str, content: list):
+def write_all_lines(path: str, content: list) -> None:
     if not isinstance(content, list):
-        print('file_util write_all_lines() Warning ! content is not list.')
+        raise TypeError('content is not list')
     create_dir_if_not_exist(os.path.dirname(path))
     with open(path, 'w', encoding='utf-8')as f:
         text = '\n'.join(content)
         f.write(text)
 
 
-def append_all_text(path: str, content: str):
-    content=str(content)
+def append_all_text(path: str, content: str) -> None:
+    content = str(content)
     with open(path, 'a', encoding='utf-8')as f:
         f.write(content)
 
 
-def append_all_texts(path: str, content: list):
+def append_all_texts(path: str, content: list) -> None:
     if not isinstance(content, list):
-        print('file_util write_all_lines() Warning ! content is not list.')
+        raise TypeError('content is not list')
     with open(path, 'a', encoding='utf-8')as f:
         text = '\n'.    join(content)
         f.write(text)
 
 
-def create_dir_if_not_exist(path: str):
+def create_dir_if_not_exist(path: str) -> None:
     if path == '':
         return
     if not os.path.exists(path):
         os.makedirs(path)
 
 
-def read_csv(path: str):
+def read_csv(path: str) -> None:
     lines = read_all_lines(path)
     rows = []
     for line in lines:
@@ -66,7 +71,7 @@ def read_csv(path: str):
     return rows
 
 
-def write_csv(path: str, rows: list):
+def write_csv(path: str, rows: list) -> None:
     lines = []
     for row in rows:
         for i in range(len(row)):
@@ -76,6 +81,9 @@ def write_csv(path: str, rows: list):
     write_all_lines(path, lines)
 
 
-if __name__ == "__main__":
-    write_csv('1.csv', [[1, 2], [2, 3]])
-    print(read_csv('1.csv'))
+def main():
+    pass
+
+
+if __name__ == '__main__':
+    main()
