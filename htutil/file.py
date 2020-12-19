@@ -2,7 +2,7 @@
 Author: HaoTian Qi
 Date: 2020-12-19 15:12:53
 Description: file IO warpper
-LastEditTime: 2020-12-19 16:12:34
+LastEditTime: 2020-12-19 16:41:28
 LastEditors: HaoTian Qi
 FilePath: /htutil/htutil/file.py
 '''
@@ -48,11 +48,11 @@ def append_all_text(path: str, content: str) -> None:
         f.write(content)
 
 
-def append_all_texts(path: str, content: list) -> None:
+def append_all_lines(path: str, content: list) -> None:
     if not isinstance(content, list):
         raise TypeError('content is not list')
     with open(path, 'a', encoding='utf-8')as f:
-        text = '\n'.    join(content)
+        text = '\n'.join(content)
         f.write(text)
 
 
@@ -82,7 +82,23 @@ def write_csv(path: str, rows: list) -> None:
 
 
 def main():
-    pass
+    s = 'hello'
+    write_all_text('1.txt', s)
+    # hello in 1.txt
+    append_all_text('1.txt', 'world')
+    # helloworld in 1.txt
+    s = read_all_text('1.txt')
+    print(s)  # helloworld
+
+    s = ['hello', 'world']
+    write_all_lines('1.txt', s)
+    # hello\nworld in 1.txt
+    append_all_lines('1.txt',['\npython'])
+    # hello\nworld\npython in 1.txt
+    s = read_all_lines('1.txt')
+    print(s)  # ['hello', 'world', 'python']
+
+    os.remove('1.txt')
 
 
 if __name__ == '__main__':
