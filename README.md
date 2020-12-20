@@ -2,13 +2,20 @@
 
 HaoTian's Python Util
 
-## install
+![version](https://img.shields.io/pypi/v/htutil)
+![downloads](https://img.shields.io/pypi/dm/htutil)
+![format](https://img.shields.io/pypi/format/htutil)
+![implementation](https://img.shields.io/pypi/implementation/htutil)
+![pyversions](https://img.shields.io/pypi/pyversions/htutil)
+![license](https://img.shields.io/pypi/l/htutil)
+
+## Install
 
 ```sh
 pip install htutil
 ```
 
-## usage
+## Usage
 
 ### file
 
@@ -36,7 +43,7 @@ Refer to C# System.IO.File API, very simple to use.
     print(s)  # ['hello', 'world', 'python']
 ```
 
-### log
+### Log
 
 ```python
 from htutil import log
