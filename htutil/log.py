@@ -2,7 +2,7 @@
 Author: HaoTian Qi
 Date: 2020-12-19 15:13:29
 Description: logger
-LastEditTime: 2020-12-19 16:53:16
+LastEditTime: 2020-12-21 11:11:24
 LastEditors: HaoTian Qi
 FilePath: /htutil/htutil/log.py
 '''
@@ -63,8 +63,9 @@ def main():
     a = 3
     p(a)
     p(a-1)
-    register_p_callback(callback_example)
-    config(format = '${var_name} = ${value} ### ${time} ### ${file_name}:${line_number}')
+    register_p_callback(lambda x: print('callback', x))
+    config(
+        format='${var_name} = ${value} ### ${time} ### ${file_name}:${line_number}')
     p(a)
     b = bob()
     p(b.a)

@@ -94,3 +94,11 @@ register_p_callback(callback_example)
 a = 3
 p(a)
 ```
+
+lambda is also a good choice.
+
+```python
+register_p_callback(lambda string:file.append_all_text('1.log',string))
+a = 3
+p(a)
+```
