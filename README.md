@@ -102,3 +102,15 @@ register_p_callback(lambda string:file.append_all_text('1.log',string))
 a = 3
 p(a)
 ```
+
+### cache
+
+cache def result by pickle file.
+
+```python
+from htutil import cache
+@cache.file_cache
+def get_1():
+    time.sleep(3)
+    return 1
+```
