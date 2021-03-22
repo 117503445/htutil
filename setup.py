@@ -5,7 +5,7 @@ with open("README.md", "r") as f:
 
 setuptools.setup(
     name="htutil",
-    version="0.1.0",
+    version="0.1.1",
     author="117503445",
     author_email="t117503445@gmail.com",
     description="HaoTian's Python Util",

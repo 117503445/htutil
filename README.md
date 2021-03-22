@@ -114,3 +114,18 @@ def get_1():
     time.sleep(3)
     return 1
 ```
+
+### counter
+
+a simple counter based on dict.
+
+```python
+    c = Counter()
+    c.add('1')
+    c.add('1')
+    c.add('2')
+
+    print(c.to_dict()) # {'1': 2, '2': 1}
+
+    c.dump() # same as print(c.to_dict())
+```
