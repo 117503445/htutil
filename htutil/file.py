@@ -2,12 +2,13 @@
 Author: HaoTian Qi
 Date: 2020-12-19 15:12:53
 Description: file IO warpper
-LastEditTime: 2020-12-19 16:41:28
+LastEditTime: 2021-04-08 15:15:03
 LastEditors: HaoTian Qi
-FilePath: /htutil/htutil/file.py
+FilePath: \htutil\htutil\file.py
 '''
 
 import os
+import pickle as pkl
 
 
 def read_all_text(path: str) -> str:
@@ -37,8 +38,8 @@ def write_all_lines(path: str, content: list) -> None:
     if not isinstance(content, list):
         raise TypeError('content is not list')
     create_dir_if_not_exist(os.path.dirname(path))
+    text = '\n'.join(content)
     with open(path, 'w', encoding='utf-8')as f:
-        text = '\n'.join(content)
         f.write(text)
 
 
@@ -81,6 +82,16 @@ def write_csv(path: str, rows: list) -> None:
     write_all_lines(path, lines)
 
 
+def write_pkl(path: str, content) -> None:
+    create_dir_if_not_exist(os.path.dirname(path))
+    with open(path, 'wb') as f:
+        pkl.dump(content, f)
+
+def read_pkl(path: str):
+    with open(path, 'rb') as f:
+        result = pkl.load(f)
+    return result
+
 def main():
     s = 'hello'
     write_all_text('1.txt', s)
@@ -93,7 +104,7 @@ def main():
     s = ['hello', 'world']
     write_all_lines('1.txt', s)
     # hello\nworld in 1.txt
-    append_all_lines('1.txt',['\npython'])
+    append_all_lines('1.txt', ['\npython'])
     # hello\nworld\npython in 1.txt
     s = read_all_lines('1.txt')
     print(s)  # ['hello', 'world', 'python']
