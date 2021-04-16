@@ -2,13 +2,14 @@
 Author: HaoTian Qi
 Date: 2020-12-19 15:12:53
 Description: file IO warpper
-LastEditTime: 2021-04-08 15:15:03
+LastEditTime: 2021-04-16 16:25:33
 LastEditors: HaoTian Qi
 FilePath: \htutil\htutil\file.py
 '''
 
 import os
 import pickle as pkl
+import json
 
 
 def read_all_text(path: str) -> str:
@@ -87,10 +88,20 @@ def write_pkl(path: str, content) -> None:
     with open(path, 'wb') as f:
         pkl.dump(content, f)
 
+
 def read_pkl(path: str):
     with open(path, 'rb') as f:
         result = pkl.load(f)
     return result
+
+
+def write_json(path: str, content) -> None:
+    write_all_lines(path, json.dumps(content))
+
+
+def read_json(path: str):
+    return json.loads(read_all_text(path))
+
 
 def main():
     s = 'hello'
