@@ -2,7 +2,7 @@
 Author: HaoTian Qi
 Date: 2020-12-19 15:12:53
 Description: file IO warpper
-LastEditTime: 2021-04-16 16:25:33
+LastEditTime: 2021-04-16 16:55:16
 LastEditors: HaoTian Qi
 FilePath: \htutil\htutil\file.py
 '''
@@ -95,8 +95,8 @@ def read_pkl(path: str):
     return result
 
 
-def write_json(path: str, content) -> None:
-    write_all_lines(path, json.dumps(content))
+def write_json(path: str, content, indent=4) -> None:
+    write_all_lines(path, json.dumps(content, indent=indent))
 
 
 def read_json(path: str):
