@@ -2,7 +2,7 @@
 Author: HaoTian Qi
 Date: 2020-12-19 15:12:53
 Description: file IO warpper
-LastEditTime: 2021-04-16 21:57:56
+LastEditTime: 2021-04-20 18:35:48
 LastEditors: HaoTian Qi
 FilePath: \htutil\htutil\file.py
 '''
@@ -45,6 +45,8 @@ def write_all_lines(path: str, content: list) -> None:
 
 
 def append_all_text(path: str, content: str) -> None:
+    if not os.path.exists(path):
+        write_all_text(path, '')
     content = str(content)
     with open(path, 'a', encoding='utf-8')as f:
         f.write(content)
@@ -53,6 +55,8 @@ def append_all_text(path: str, content: str) -> None:
 def append_all_lines(path: str, content: list) -> None:
     if not isinstance(content, list):
         raise TypeError('content is not list')
+    if not os.path.exists(path):
+        write_all_text(path, '')
     with open(path, 'a', encoding='utf-8')as f:
         text = '\n'.join(content)
         f.write(text)
