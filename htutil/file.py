@@ -2,7 +2,7 @@
 Author: HaoTian Qi
 Date: 2020-12-19 15:12:53
 Description: file IO warpper
-LastEditTime: 2021-04-20 18:35:48
+LastEditTime: 2021-04-22 16:47:47
 LastEditors: HaoTian Qi
 FilePath: \htutil\htutil\file.py
 '''
@@ -12,14 +12,14 @@ import pickle as pkl
 import json
 
 
-def read_all_text(path: str) -> str:
+def read_text(path: str) -> str:
     with open(path, 'r', encoding='utf-8')as f:
         lines = f.readlines()
         text = ''.join(lines)
         return text
 
 
-def read_all_lines(path: str) -> str:
+def read_lines(path: str) -> str:
     with open(path, 'r', encoding='utf-8')as f:
         lines = f.readlines()
         for i in range(len(lines)):
@@ -28,14 +28,14 @@ def read_all_lines(path: str) -> str:
         return lines
 
 
-def write_all_text(path: str, content: str) -> None:
+def write_text(path: str, content: str) -> None:
     content = str(content)
     create_dir_if_not_exist(os.path.dirname(path))
     with open(path, 'w', encoding='utf-8')as f:
         f.write(content)
 
 
-def write_all_lines(path: str, content: list) -> None:
+def write_lines(path: str, content: list) -> None:
     if not isinstance(content, list):
         raise TypeError('content is not list')
     create_dir_if_not_exist(os.path.dirname(path))
@@ -44,19 +44,19 @@ def write_all_lines(path: str, content: list) -> None:
         f.write(text)
 
 
-def append_all_text(path: str, content: str) -> None:
+def append_text(path: str, content: str) -> None:
     if not os.path.exists(path):
-        write_all_text(path, '')
+        write_text(path, '')
     content = str(content)
     with open(path, 'a', encoding='utf-8')as f:
         f.write(content)
 
 
-def append_all_lines(path: str, content: list) -> None:
+def append_lines(path: str, content: list) -> None:
     if not isinstance(content, list):
         raise TypeError('content is not list')
     if not os.path.exists(path):
-        write_all_text(path, '')
+        write_text(path, '')
     with open(path, 'a', encoding='utf-8')as f:
         text = '\n'.join(content)
         f.write(text)
@@ -70,7 +70,7 @@ def create_dir_if_not_exist(path: str) -> None:
 
 
 def read_csv(path: str) -> None:
-    lines = read_all_lines(path)
+    lines = read_lines(path)
     rows = []
     for line in lines:
         rows.append(line.split(','))
@@ -84,7 +84,7 @@ def write_csv(path: str, rows: list) -> None:
             row[i] = str(row[i])
         line = ','.join(row)
         lines.append(line)
-    write_all_lines(path, lines)
+    write_lines(path, lines)
 
 
 def write_pkl(path: str, content) -> None:
@@ -100,28 +100,28 @@ def read_pkl(path: str):
 
 
 def write_json(path: str, content, indent=4) -> None:
-    write_all_text(path, json.dumps(content, indent=indent))
+    write_text(path, json.dumps(content, indent=indent))
 
 
 def read_json(path: str):
-    return json.loads(read_all_text(path))
+    return json.loads(read_text(path))
 
 
 def main():
     s = 'hello'
-    write_all_text('1.txt', s)
+    write_text('1.txt', s)
     # hello in 1.txt
-    append_all_text('1.txt', 'world')
+    append_text('1.txt', 'world')
     # helloworld in 1.txt
-    s = read_all_text('1.txt')
+    s = read_text('1.txt')
     print(s)  # helloworld
 
     s = ['hello', 'world']
-    write_all_lines('1.txt', s)
+    write_lines('1.txt', s)
     # hello\nworld in 1.txt
-    append_all_lines('1.txt', ['\npython'])
+    append_lines('1.txt', ['\npython'])
     # hello\nworld\npython in 1.txt
-    s = read_all_lines('1.txt')
+    s = read_lines('1.txt')
     print(s)  # ['hello', 'world', 'python']
 
     os.remove('1.txt')

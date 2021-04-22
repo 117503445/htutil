@@ -27,19 +27,19 @@ Refer to C# System.IO.File API, very simple to use.
 
 ```python
     s = 'hello'
-    write_all_text('1.txt', s)
+    write_text('1.txt', s)
     # hello in 1.txt
-    append_all_text('1.txt', 'world')
+    append_text('1.txt', 'world')
     # helloworld in 1.txt
-    s = read_all_text('1.txt')
+    s = read_text('1.txt')
     print(s)  # helloworld
 
     s = ['hello', 'world']
-    write_all_lines('1.txt', s)
+    write_lines('1.txt', s)
     # hello\nworld in 1.txt
-    append_all_lines('1.txt',['\npython'])
+    append_lines('1.txt',['\npython'])
     # hello\nworld\npython in 1.txt
-    s = read_all_lines('1.txt')
+    s = read_lines('1.txt')
     print(s)  # ['hello', 'world', 'python']
 ```
 
@@ -88,7 +88,7 @@ If you want to save the log output to file, you could use callback.
 
 ```python
 def callback_example(string: str):
-    file.append_all_text('1.log',string)
+    file.append_text('1.log',string)
 
 register_p_callback(callback_example)
 a = 3
@@ -98,7 +98,7 @@ p(a)
 lambda is also a good choice.
 
 ```python
-register_p_callback(lambda string:file.append_all_text('1.log',string))
+register_p_callback(lambda string:file.append_text('1.log',string))
 a = 3
 p(a)
 ```
