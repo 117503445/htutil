@@ -2,7 +2,7 @@
 Author: HaoTian Qi
 Date: 2020-12-19 15:12:53
 Description: file IO warpper
-LastEditTime: 2021-04-22 16:47:47
+LastEditTime: 2021-04-22 16:50:15
 LastEditors: HaoTian Qi
 FilePath: \htutil\htutil\file.py
 '''
@@ -44,10 +44,12 @@ def write_lines(path: str, content: list) -> None:
         f.write(text)
 
 
-def append_text(path: str, content: str) -> None:
+def append_text(path: str, content: str, newline=True) -> None:
     if not os.path.exists(path):
         write_text(path, '')
     content = str(content)
+    if newline:
+        content += '\n'
     with open(path, 'a', encoding='utf-8')as f:
         f.write(content)
 
