@@ -13,14 +13,14 @@ import json
 
 
 def read_text(path: str) -> str:
-    with open(path, 'r', encoding='utf-8')as f:
+    with open(path, 'r', encoding='utf-8', errors='ignore') as f:
         lines = f.readlines()
         text = ''.join(lines)
         return text
 
 
 def read_lines(path: str) -> str:
-    with open(path, 'r', encoding='utf-8')as f:
+    with open(path, 'r', encoding='utf-8', errors='ignore') as f:
         lines = f.readlines()
         for i in range(len(lines)):
             lines[i] = lines[i].replace('\n', '')
@@ -31,7 +31,7 @@ def read_lines(path: str) -> str:
 def write_text(path: str, content: str) -> None:
     content = str(content)
     create_dir_if_not_exist(os.path.dirname(path))
-    with open(path, 'w', encoding='utf-8')as f:
+    with open(path, 'w', encoding='utf-8', errors='ignore') as f:
         f.write(content)
 
 
@@ -40,7 +40,7 @@ def write_lines(path: str, content: list) -> None:
         raise TypeError('content is not list')
     create_dir_if_not_exist(os.path.dirname(path))
     text = '\n'.join(content)
-    with open(path, 'w', encoding='utf-8')as f:
+    with open(path, 'w', encoding='utf-8', errors='ignore') as f:
         f.write(text)
 
 
@@ -50,7 +50,7 @@ def append_text(path: str, content: str, newline=True) -> None:
     content = str(content)
     if newline:
         content += '\n'
-    with open(path, 'a', encoding='utf-8')as f:
+    with open(path, 'a', encoding='utf-8', errors='ignore') as f:
         f.write(content)
 
 
@@ -59,7 +59,7 @@ def append_lines(path: str, content: list) -> None:
         raise TypeError('content is not list')
     if not os.path.exists(path):
         write_text(path, '')
-    with open(path, 'a', encoding='utf-8')as f:
+    with open(path, 'a', encoding='utf-8', errors='ignore') as f:
         text = '\n'.join(content)
         f.write(text)
 
