@@ -2,7 +2,7 @@
 Author: HaoTian Qi
 Date: 2020-12-19 15:12:53
 Description: file IO warpper
-LastEditTime: 2021-05-14 20:33:45
+LastEditTime: 2022-10-15 10:06:36
 LastEditors: HaoTian Qi
 FilePath: \htutil\htutil\file.py
 '''
@@ -19,7 +19,7 @@ def read_text(path: str) -> str:
         return text
 
 
-def read_lines(path: str) -> str:
+def read_lines(path: str) -> list[str]:
     with open(path, 'r', encoding='utf-8', errors='ignore') as f:
         lines = f.readlines()
         for i in range(len(lines)):
