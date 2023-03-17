@@ -5,7 +5,7 @@ with open("README.md", "r") as f:
 
 setuptools.setup(
     name="htutil",
-    version="1.0.4",
+    version="2.0.0",
     author="117503445",
     author_email="t117503445@gmail.com",
     description="HaoTian's Python Util",
@@ -17,6 +17,5 @@ setuptools.setup(
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
         "Operating System :: OS Independent",
-    ],
-    install_requires=['elasticsearch']
+    ]
 )
