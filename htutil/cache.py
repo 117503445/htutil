@@ -1,11 +1,3 @@
-'''
-Author: HaoTian Qi
-Date: 2021-02-18 13:40:42
-Description: function result cache
-LastEditTime: 2021-02-18 13:58:34
-LastEditors: HaoTian Qi
-FilePath: \htutil\htutil\cache.py
-'''
 import time
 import pickle as pkl
 from pathlib import Path

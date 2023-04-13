@@ -1,11 +1,3 @@
-'''
-Author: HaoTian Qi
-Date: 2021-03-22 09:41:32
-Description: Counter
-LastEditTime: 2021-04-08 15:10:28
-LastEditors: HaoTian Qi
-FilePath: \htutil\htutil\counter.py
-'''
 class Counter():
     def add(self, object):
         if object in self.__dict__:

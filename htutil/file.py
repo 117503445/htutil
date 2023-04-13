@@ -1,12 +1,3 @@
-'''
-Author: HaoTian Qi
-Date: 2020-12-19 15:12:53
-Description: file IO warpper
-LastEditTime: 2022-10-15 10:06:36
-LastEditors: HaoTian Qi
-FilePath: \htutil\htutil\file.py
-'''
-
 import os
 import pickle as pkl
 import json
