@@ -1,16 +1,17 @@
 import os
 import pickle as pkl
+from pathlib import Path
 import json
 
 
-def read_text(path: str) -> str:
+def read_text(path: str| Path) -> str:
     with open(path, 'r', encoding='utf-8', errors='ignore') as f:
         lines = f.readlines()
         text = ''.join(lines)
         return text
 
 
-def read_lines(path: str) -> list[str]:
+def read_lines(path: str| Path) -> list[str]:
     with open(path, 'r', encoding='utf-8', errors='ignore') as f:
         lines = f.readlines()
         for i in range(len(lines)):
@@ -19,14 +20,14 @@ def read_lines(path: str) -> list[str]:
         return lines
 
 
-def write_text(path: str, content: str) -> None:
+def write_text(path: str| Path, content: str) -> None:
     content = str(content)
     create_dir_if_not_exist(os.path.dirname(path))
     with open(path, 'w', encoding='utf-8', errors='ignore') as f:
         f.write(content)
 
 
-def write_lines(path: str, content: list) -> None:
+def write_lines(path: str| Path, content: list) -> None:
     if not isinstance(content, list):
         raise TypeError('content is not list')
     create_dir_if_not_exist(os.path.dirname(path))
@@ -35,7 +36,7 @@ def write_lines(path: str, content: list) -> None:
         f.write(text)
 
 
-def append_text(path: str, content: str, newline=True) -> None:
+def append_text(path: str| Path, content: str, newline=True) -> None:
     if not os.path.exists(path):
         write_text(path, '')
     content = str(content)
@@ -45,7 +46,7 @@ def append_text(path: str, content: str, newline=True) -> None:
         f.write(content)
 
 
-def append_lines(path: str, content: list) -> None:
+def append_lines(path: str| Path, content: list) -> None:
     if not isinstance(content, list):
         raise TypeError('content is not list')
     if not os.path.exists(path):
@@ -55,22 +56,22 @@ def append_lines(path: str, content: list) -> None:
         f.write(text)
 
 
-def create_dir_if_not_exist(path: str) -> None:
+def create_dir_if_not_exist(path: str| Path) -> None:
     if path == '':
         return
     if not os.path.exists(path):
         os.makedirs(path)
 
 
-def read_csv(path: str) -> None:
+def read_csv(path: str| Path) -> list[list[str]]:
     lines = read_lines(path)
-    rows = []
+    rows:list[list[str]] = []
     for line in lines:
         rows.append(line.split(','))
     return rows
 
 
-def write_csv(path: str, rows: list) -> None:
+def write_csv(path: str| Path, rows: list) -> None:
     lines = []
     for row in rows:
         for i in range(len(row)):
@@ -80,23 +81,23 @@ def write_csv(path: str, rows: list) -> None:
     write_lines(path, lines)
 
 
-def write_pkl(path: str, content) -> None:
+def write_pkl(path: str| Path, content) -> None:
     create_dir_if_not_exist(os.path.dirname(path))
     with open(path, 'wb') as f:
         pkl.dump(content, f)
 
 
-def read_pkl(path: str):
+def read_pkl(path: str| Path):
     with open(path, 'rb') as f:
         result = pkl.load(f)
     return result
 
 
-def write_json(path: str, content, indent=4) -> None:
+def write_json(path: str| Path, content, indent=4) -> None:
     write_text(path, json.dumps(content, indent=indent, ensure_ascii=False))
 
 
-def read_json(path: str):
+def read_json(path: str| Path):
     return json.loads(read_text(path))
 
 
