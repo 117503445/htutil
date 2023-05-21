@@ -94,7 +94,7 @@ def read_pkl(path: str| Path):
 
 
 def write_json(path: str| Path, content, indent=4) -> None:
-    write_text(path, json.dumps(content, indent=indent, ensure_ascii=False))
+    write_text(path, json.dumps(content, indent=indent, ensure_ascii=False, default=lambda x: x.__dict__))
 
 
 def read_json(path: str| Path):
