@@ -2,6 +2,7 @@ import os
 import pickle as pkl
 from pathlib import Path
 import json
+import yaml
 
 
 def read_text(path: str| Path) -> str:
@@ -100,6 +101,11 @@ def write_json(path: str| Path, content, indent=4) -> None:
 def read_json(path: str| Path):
     return json.loads(read_text(path))
 
+def write_yaml(path: str| Path, content, indent=4) -> None:
+    write_text(path, yaml.dump(content, allow_unicode=True, indent=indent))
+
+def read_yaml(path: str| Path):
+    return yaml.load(read_text(path), Loader=yaml.FullLoader)
 
 def main():
     s = 'hello'
@@ -118,7 +124,14 @@ def main():
     s = read_lines('1.txt')
     print(s)  # ['hello', 'world', 'python']
 
+    s = {'a': 1, 'b': [1, 2, 3]}
+    write_yaml('1.yaml', s)
+
+    s = read_yaml('1.yaml')
+    print(s) # {'a': 1, 'b': [1, 2, 3]}
+
     os.remove('1.txt')
+    os.remove('1.yaml')
 
 
 if __name__ == '__main__':
